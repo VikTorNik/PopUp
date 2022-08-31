@@ -107,6 +107,7 @@ body {
   justify-content: space-around;
   height: 50px;
 }
+
 .nav .nav__menu li {
   display: flex;
   justify-content: center;
@@ -117,24 +118,36 @@ body {
   text-transform: uppercase;
   color: #000;
 }
-.nav .nav__menu li:hover, .nav .nav__menu li:focus {
-  background-color: #0b3b41;
+
+.nav .nav__menu li:focus-within a,
+.nav .nav__menu li:hover a {
   color: white;
 }
+
+.nav .nav__menu li:focus-within label,
+.nav .nav__menu li:hover label {
+  opacity: 0.5;
+  border: 2.5px solid rgb(7, 68, 64);
+  border-radius: 4px;
+}
+
+.nav .nav__menu li:focus {
+  opacity: 0.5;
+  border: 2.5px solid rgb(7, 68, 64);
+  border-radius: 4px;
+}
+
 .nav .nav__menu li .nav__popup {
   display: flex;
   opacity: 0;
   position: absolute;
 }
-.nav .nav__menu li .nav__popup:hover {
-  opacity: 1;
-}
 
 .checkbox1,
 .checkbox2 {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   position: absolute;
 }
 
@@ -184,32 +197,36 @@ body {
 .checkbox2__label {
   display: grid;
   text-align: center;
-  padding: 15px;
+  padding: 20px;
 }
 
-.checkbox1:checked ~ .content {
+.checkbox1:checked~.content {
   display: block;
 }
 
-.checkbox2:checked ~ .content__more {
+.checkbox2:checked~.content__more {
   display: grid;
 }
 
-.checkbox2:checked ~ .checkbox2__label {
+.checkbox2:checked~.checkbox2__label {
   display: none;
 }
 
-.content2:focus,
-.content2:hover,
-.content__more2:focus,
+content2:hover,
 .content__more2:hover,
-.checkbox2:focus,
-.checkbox2:hover {
+.checkbox2__label:hover {
   background-color: rgb(243, 221, 161);
-  border-color: #000;
-  border-style: outset;
-  border-width: thin;
-  border-radius: 10px;
+}
+
+.content2:focus-within,
+.content__more2:focus-within {
+  background-color: rgb(243, 221, 161);
+}
+
+.checkbox2:focus~label {
+  border: 2.5px solid rgb(7, 68, 64);
+  border-radius: 4px;
+  background-color: rgb(243, 221, 161);
 }
 
 .main {
@@ -219,6 +236,7 @@ body {
   justify-content: center;
   background-color: rgb(243, 221, 161);
 }
+
 .main .main__animated:hover {
   opacity: 0.4;
 }
@@ -230,12 +248,14 @@ body {
   height: 30px;
   background-color: rgb(68, 202, 206);
 }
+
 .footer .footer__div {
   font-size: 14px;
   font-weight: 700;
   text-shadow: 3px 3px 10px rgb(7, 68, 64);
   text-align: center;
 }
+
 .footer .footer__git:hover {
   color: rgb(26, 41, 215);
 }
