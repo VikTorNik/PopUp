@@ -10,85 +10,19 @@
   box-sizing: border-box;
 }
 
-:focus,
-:active {
+:focus {
   outline: none;
-}
-
-a:focus,
-a:active {
-  outline: none;
-}
-
-nav,
-footer,
-header,
-aside {
-  display: block;
 }
 
 html,
 body {
   height: 100%;
-  width: 100%;
-  font-size: 100%;
-  line-height: 1;
-  font-size: 16px;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-input,
-button,
-textarea {
-  font-family: inherit;
-}
-
-input::-ms-clear {
-  display: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-a,
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-ul li {
-  list-style: none;
-}
-
-img {
-  vertical-align: top;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: 400;
-}
-
-body {
-  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 1.8rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 .wrapper {
@@ -107,7 +41,9 @@ body {
   justify-content: space-around;
   height: 50px;
 }
-.nav .nav__menu li {
+.nav .nav__menu .li-menu,
+.nav .nav__menu .content-button,
+.nav .nav__menu .content-button-add {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,25 +51,23 @@ body {
   font-weight: 500;
   text-shadow: 3px 3px 8px rgb(7, 68, 64);
   text-transform: uppercase;
-  color: #000;
+  color: rgb(5, 37, 41);
 }
-.nav .nav__menu li:focus-within a, .nav .nav__menu li:hover a {
-  color: white;
+.nav .nav__menu .li-menu .item-menu:hover,
+.nav .nav__menu .li-menu .item-menu:focus,
+.nav .nav__menu .content-button .item-menu:hover,
+.nav .nav__menu .content-button .item-menu:focus,
+.nav .nav__menu .content-button-add .item-menu:hover,
+.nav .nav__menu .content-button-add .item-menu:focus {
+  color: rgb(189, 226, 234);
 }
-.nav .nav__menu li:focus-within label, .nav .nav__menu li:hover label {
+.nav .nav__menu .li-menu .label__base:hover, .nav .nav__menu .li-menu:focus-within label,
+.nav .nav__menu .content-button .label__base:hover,
+.nav .nav__menu .content-button:focus-within label,
+.nav .nav__menu .content-button-add .label__base:hover,
+.nav .nav__menu .content-button-add:focus-within label {
   opacity: 0.5;
-  border: 2.5px solid rgb(7, 68, 64);
-  border-radius: 4px;
-}
-.nav .nav__menu li:focus {
-  opacity: 0.5;
-  border: 2.5px solid rgb(7, 68, 64);
-  border-radius: 4px;
-}
-.nav .nav__menu li .nav__popup {
-  display: flex;
-  opacity: 0;
-  position: absolute;
+  cursor: pointer;
 }
 
 .checkbox-base,
@@ -153,15 +87,15 @@ body {
   height: 400px;
   gap: 28px;
   overflow: auto;
-  border: 2px solid #9b9b9b;
+  border: 2px solid rgb(68, 202, 206);
   border-radius: 10px;
-  background-color: rgb(223, 196, 89);
+  background-color: rgb(184, 242, 242);
 }
 
 .content__base {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  font-size: 13px;
+  font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   text-shadow: none;
@@ -170,7 +104,7 @@ body {
 .content__additional {
   display: none;
   grid-template-columns: repeat(3, 1fr);
-  font-size: 13px;
+  font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   text-shadow: none;
@@ -193,11 +127,11 @@ body {
   padding: 20px;
 }
 
-.checkbox-base:checked ~ .content {
+#checkbox-base:checked ~ .content {
   display: block;
 }
 
-.checkbox-additional:checked ~ .content__additional {
+#checkbox-additional:checked ~ .content__additional {
   display: grid;
 }
 
@@ -207,19 +141,11 @@ body {
 
 .content-button:hover,
 .content-button-add:hover,
-.label-additional:hover {
-  background-color: rgb(243, 221, 161);
-}
-
+.label-additional:hover,
 .content-button:focus-within,
-.content-button-add:focus-within {
-  background-color: rgb(243, 221, 161);
-}
-
+.content-button-add:focus-within,
 .checkbox-additional:focus ~ label {
-  border: 2.5px solid rgb(7, 68, 64);
-  border-radius: 4px;
-  background-color: rgb(243, 221, 161);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .main {
@@ -227,10 +153,11 @@ body {
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  background-color: rgb(243, 221, 161);
+  background-color: rgb(90, 161, 177);
 }
-.main .main__animated:hover {
-  opacity: 0.4;
+
+.main__animated:hover {
+  opacity: 0.2;
 }
 
 .footer {
@@ -240,13 +167,63 @@ body {
   height: 30px;
   background-color: rgb(68, 202, 206);
 }
-.footer .footer__div {
-  font-size: 14px;
+
+.footer__div {
+  font-size: 1.5rem;
   font-weight: 700;
   text-shadow: 3px 3px 10px rgb(7, 68, 64);
   text-align: center;
 }
-.footer .footer__git:hover {
-  color: rgb(26, 41, 215);
+
+.footer__git:hover {
+  color: rgb(189, 226, 234);
 }
 
+@media (max-width: 480px) {
+  html {
+    font-size: 44%;
+  }
+  .main__animated {
+    transform: scale(0.5);
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+  .main__animated {
+    transform: scale(0.6);
+  }
+}
+@media (min-width: 769px) and (max-width: 992px) {
+  html {
+    font-size: 54%;
+  }
+  .main__animated {
+    transform: scale(0.7);
+  }
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  html {
+    font-size: 60%;
+  }
+  .main__animated {
+    transform: scale(0.8);
+  }
+}
+@media (min-width: 1201px) {
+  html {
+    font-size: 68%;
+  }
+  .main__animated {
+    transform: scale(0.87);
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  html {
+    font-size: 60%;
+  }
+  .main__animated {
+    transform: scale(0.6);
+  }
+}
