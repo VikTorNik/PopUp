@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-:focus {
+*:focus {
   outline: none;
 }
 
@@ -21,10 +21,6 @@ body {
   font-size: 1.8rem;
 }
 
-a {
-  text-decoration: none;
-}
-
 .wrapper {
   min-height: 100%;
   display: flex;
@@ -33,41 +29,97 @@ a {
 
 .header {
   background-color: rgb(68, 202, 206);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: inherit;
+  position: relative;
 }
 
-.nav .nav__menu {
+.nav__menu {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
 }
-.nav .nav__menu .li-menu,
-.nav .nav__menu .content-button,
-.nav .nav__menu .content-button-add {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  font-weight: 500;
+
+.menu__item {
+  display: block;
+  border: 1px solid transparent;
+}
+
+.img-menu {
+  display: block;
+  margin: 5px 10px;
+  width: 35px;
+  cursor: pointer;
+}
+
+.content-button,
+.menu-button {
+  display: block;
+}
+
+.content-button {
   text-shadow: 3px 3px 8px rgb(7, 68, 64);
   text-transform: uppercase;
   color: rgb(5, 37, 41);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
-.nav .nav__menu .li-menu .item-menu:hover,
-.nav .nav__menu .li-menu .item-menu:focus,
-.nav .nav__menu .content-button .item-menu:hover,
-.nav .nav__menu .content-button .item-menu:focus,
-.nav .nav__menu .content-button-add .item-menu:hover,
-.nav .nav__menu .content-button-add .item-menu:focus {
-  color: rgb(189, 226, 234);
-}
-.nav .nav__menu .li-menu .label__base:hover, .nav .nav__menu .li-menu:focus-within label,
-.nav .nav__menu .content-button .label__base:hover,
-.nav .nav__menu .content-button:focus-within label,
-.nav .nav__menu .content-button-add .label__base:hover,
-.nav .nav__menu .content-button-add:focus-within label {
-  opacity: 0.5;
+
+.img-popup {
+  display: block;
+  margin-bottom: 15px;
   cursor: pointer;
+  width: 50px;
+}
+
+.label__base {
+  cursor: pointer;
+}
+
+.nav__popup {
+  display: none;
+  position: absolute;
+  top: 57px;
+  right: 10px;
+  width: 340px;
+  height: 270px;
+  overflow: auto;
+  border: 2px solid rgb(68, 202, 206);
+  border-radius: 7px;
+  background-color: rgb(184, 242, 242);
+}
+
+.checkbox-base:checked ~ .nav__popup {
+  display: block;
+}
+
+.content__base {
+  padding: 7px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.content__additional {
+  display: none;
+}
+
+.label-additional {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 90%;
+  border: 2px solid rgb(7, 68, 64);
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: rgb(68, 202, 206);
+  text-shadow: 3px 3px 8px rgb(7, 68, 64);
+  text-transform: uppercase;
+  font-size: 1.5rem;
 }
 
 .checkbox-base,
@@ -78,74 +130,58 @@ a {
   position: absolute;
 }
 
-.content {
-  display: none;
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  width: 370px;
-  height: 400px;
-  gap: 28px;
-  overflow: auto;
-  border: 2px solid rgb(68, 202, 206);
-  border-radius: 10px;
-  background-color: rgb(184, 242, 242);
+.content__application {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 86px;
+  height: auto;
+  padding: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
 }
 
-.content__base {
+.checkbox-additional:checked ~ .content__additional {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-align: center;
-  text-shadow: none;
+  justify-items: center;
+  align-items: center;
 }
 
-.content__additional {
-  display: none;
-  grid-template-columns: repeat(3, 1fr);
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-align: center;
-  text-shadow: none;
-}
-
-.content-button,
-.content-button-add {
-  padding: 10px;
-}
-
-.content__application img {
-  height: 75px;
-  width: 75px;
-  padding: 10px;
-}
-
-.label-additional {
-  display: grid;
-  text-align: center;
-  padding: 20px;
-}
-
-#checkbox-base:checked ~ .content {
-  display: block;
-}
-
-#checkbox-additional:checked ~ .content__additional {
-  display: grid;
-}
-
-.checkbox-additional:checked ~ .label-additional {
+.checkbox-additional:checked + .label-additional,
+.checkbox-additional:checked {
   display: none;
 }
 
-.content-button:hover,
-.content-button-add:hover,
-.label-additional:hover,
-.content-button:focus-within,
-.content-button-add:focus-within,
-.checkbox-additional:focus ~ label {
+.content__application:focus,
+.content__application:hover {
   background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+}
+
+.checkbox-base:focus + .label__base > .img-menu,
+.checkbox-base:hover + .label__base > .img-menu,
+.menu__item:focus,
+.menu__item:hover {
+  opacity: 0.7;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.more__input:focus + .more__label,
+.more__input:hover + .more__label {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  background-color: rgb(68, 202, 206);
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0.2;
+}
+
+.checkbox-additional:focus + .label-additional,
+.checkbox-additional:hover + .label-additional {
+  height: 29px;
+  width: 88%;
+  background-color: rgb(189, 226, 234);
+  font-size: 1.4rem;
 }
 
 .main {
@@ -156,6 +192,7 @@ a {
   background-color: rgb(90, 161, 177);
 }
 
+.main__kottans:focus,
 .main__animated:hover {
   opacity: 0.2;
 }
@@ -164,7 +201,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 40px;
   background-color: rgb(68, 202, 206);
 }
 
@@ -175,6 +212,11 @@ a {
   text-align: center;
 }
 
+.footer__git {
+  text-decoration: none;
+}
+
+.footer__git:focus,
 .footer__git:hover {
   color: rgb(189, 226, 234);
 }
@@ -183,47 +225,29 @@ a {
   html {
     font-size: 44%;
   }
-  .main__animated {
-    transform: scale(0.5);
-  }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   html {
     font-size: 50%;
-  }
-  .main__animated {
-    transform: scale(0.6);
   }
 }
 @media (min-width: 769px) and (max-width: 992px) {
   html {
     font-size: 54%;
   }
-  .main__animated {
-    transform: scale(0.7);
-  }
 }
 @media (min-width: 993px) and (max-width: 1200px) {
   html {
     font-size: 60%;
-  }
-  .main__animated {
-    transform: scale(0.8);
   }
 }
 @media (min-width: 1201px) {
   html {
     font-size: 68%;
   }
-  .main__animated {
-    transform: scale(0.87);
-  }
 }
 @media (max-width: 768px) and (orientation: landscape) {
   html {
     font-size: 60%;
-  }
-  .main__animated {
-    transform: scale(0.6);
   }
 }
