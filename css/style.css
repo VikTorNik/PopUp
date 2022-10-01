@@ -32,8 +32,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: inherit;
-  position: relative;
 }
 
 .nav__menu {
@@ -48,7 +46,7 @@ body {
 .img-menu {
   display: block;
   margin: 5px 10px;
-  width: 35px;
+  width: 40px;
   cursor: pointer;
 }
 
@@ -159,11 +157,16 @@ body {
   opacity: 0.8;
 }
 
-.checkbox-base:focus + .label__base > .img-menu,
-.checkbox-base:hover + .label__base > .img-menu,
 .menu__item:focus,
 .menu__item:hover {
   opacity: 0.7;
+  transform: scale(1.25);
+}
+
+.checkbox-base:focus + .label__base > .img-menu,
+.checkbox-base:hover + .label__base > .img-menu {
+  opacity: 0.5;
+  transform: scale(1.1);
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 5px;
 }
